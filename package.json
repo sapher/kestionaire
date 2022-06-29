@@ -2,7 +2,11 @@
   "name": "kestionaire",
   "description": "Small utility that allow to generate .env file by answering question",
   "keywords": ["utility", "cli", "quizz"],
-  "version": "1.0.0",
+  "readme": "https://github.com/sapher/kestionaire/blob/main/README.md",
+  "repository": {
+    "url": "https://github.com/sapher/kestionaire"
+  },
+  "version": "1.0.1",
   "bin": "src/index.js",
   "type": "module",
   "license": "WTFPL",

@@ -1,0 +1,13 @@
+{
+  "name": "kestionaire",
+  "description": "Small utility that allow to generate .env file by answering question",
+  "keywords": ["utility", "cli", "quizz"],
+  "version": "1.0.0",
+  "bin": "src/index.js",
+  "type": "module",
+  "license": "WTFPL",
+  "dependencies": {
+    "inquirer": "^9.0.0",
+    "yaml": "^2.1.1"
+  }
+}

@@ -5,7 +5,7 @@ import fs from "fs/promises";
 import path from "path";
 
 /**
- * Read yaml input question file and parse
+ * Read yaml input question file and return parsed object
  * @param filename
  */
 async function readfile(filename) {
@@ -44,16 +44,61 @@ async function exportDotEnv(filename, answers) {
 }
 
 /**
+ * Read that has been previously outputed in order to fill answers
+ * @param filename
+ */
+async function readOutputFile(filename) {
+  try {
+    const fileContent = await fs.readFile(filename, { encoding: "utf-8" });
+    const contentLines = fileContent.split("\n").filter((l) => l);
+    return contentLines.reduce((prev, curr) => {
+      const envVar = curr.split(/=(.*)/s, 2);
+      if (envVar.length === 2) {
+        const [key, value] = envVar;
+        return { ...prev, [key]: value };
+      }
+      return { ...prev };
+    }, {});
+  } catch (e) {
+    return [];
+  }
+}
+
+/**
+ * Update questions with previous answers
+ * @param questions
+ * @param answers
+ */
+function updateQuestionsWithPreviousAnswers(questions, answers) {
+  const clone = [...questions];
+  questions.forEach((q) => {
+    Object.keys(answers).forEach((a) => {
+      if (q.name.toLowerCase() === a.toLowerCase()) {
+        q.default = answers[a];
+        q.askAnswered = true;
+      }
+    });
+  });
+  return clone;
+}
+
+/**
  * Bootstrap function
  */
 (async () => {
   try {
-    const questionFile = process.argv[2];
-    const content = await readfile(questionFile);
-    const answers = await inquirer.prompt(content.questions);
-    const answerFile = content.output;
-    await exportDotEnv(answerFile, answers);
+    const questionFilename = process.argv[2];
+    const content = await readfile(questionFilename);
+    const answerFilename = content.output;
+    const prevAnswers = await readOutputFile(answerFilename);
+    const questions = updateQuestionsWithPreviousAnswers(
+      content.questions,
+      prevAnswers
+    );
+    const answers = await inquirer.prompt(questions);
+    await exportDotEnv(answerFilename, answers);
   } catch (err) {
+    console.log(err);
     console.error(`Error: ${err.message}`);
     process.exit(1);
   }

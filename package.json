@@ -10,7 +10,7 @@
   "repository": {
     "url": "https://github.com/sapher/kestionaire"
   },
-  "version": "1.0.2",
+  "version": "1.0.3",
   "bin": "src/index.js",
   "type": "module",
   "license": "WTFPL",

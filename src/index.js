@@ -98,7 +98,6 @@ function updateQuestionsWithPreviousAnswers(questions, answers) {
     const answers = await inquirer.prompt(questions);
     await exportDotEnv(answerFilename, answers);
   } catch (err) {
-    console.log(err);
     console.error(`Error: ${err.message}`);
     process.exit(1);
   }

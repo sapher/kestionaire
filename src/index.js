@@ -23,6 +23,7 @@ async function readfile(filename) {
 async function exportDotEnv(filename, answers) {
   const lines = Object.entries(answers)
     .map(([key, value]) => `${key.toUpperCase()}=${value}`)
+    .sort()
     .join("\n");
 
   // Test if folder exist

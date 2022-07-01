@@ -1,6 +1,6 @@
 {
   "name": "kestionaire",
-  "description": "Small utility that allow to generate .env file by answering question",
+  "description": "Generation of .env file by answering questions",
   "keywords": [
     "utility",
     "cli",
@@ -10,7 +10,7 @@
   "repository": {
     "url": "https://github.com/sapher/kestionaire"
   },
-  "version": "1.0.4",
+  "version": "1.0.5",
   "bin": "src/index.js",
   "type": "module",
   "license": "WTFPL",

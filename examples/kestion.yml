@@ -1,0 +1,6 @@
+output: .env.local
+questions:
+  - name: "Lastname"
+    message: "Lastname"
+  - name: "Firstname"
+    message: "Firstname"

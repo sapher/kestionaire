@@ -88,7 +88,7 @@ function updateQuestionsWithPreviousAnswers(questions, answers) {
  */
 (async () => {
   try {
-    const questionFilename = process.argv[2];
+    const questionFilename = process.argv[2] || "kestion.yml";
     const content = await readfile(questionFilename);
     const answerFilename = content.output;
     const prevAnswers = await readOutputFile(answerFilename);

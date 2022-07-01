@@ -1,14 +1,33 @@
 ## Kestionaire
 
-Small utility that allow to generate .env file by answering question.
-This tool is based on [inquirer](https://www.npmjs.com/package/inquirer).
+Utility for the generation of .env file by answering questions from a file.
+
+This tool use [inquirer](https://www.npmjs.com/package/inquirer) as a backend.
 
 ## Usage
+
+**Configuration**
+
+You need to create a file that contain configuration provided by inquirer under the `Question` section.
+
+```yaml
+output: .env
+questions:
+  - name: "name"
+    message: "What is your name ?"
+```
 
 **Run**
 
 ```shell
-npx kestionaire `answers.yaml`
+npx kestionaire `kestion.yml`
 ```
 
-You can use any configuration provided by inquirer.
+## Configuration
+
+You can use any configuration provided by inquirer under the `Question` section.
+
+## Missing features
+
+- Handling more file format for input files
+- Handling of external calls

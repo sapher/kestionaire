@@ -1,0 +1,13 @@
+output: .env
+questions:
+  - name: "k_name"
+    message: "What is your name"
+  - name: "k_city"
+    message: "Where are you from ?"
+    type: list
+    choices:
+      - Europe
+      - North America
+      - Asia
+      - South America
+      - Africa
